@@ -1,0 +1,23 @@
+---
+language: node_js
+node_js: stable
+global_env: GH_REF=github.com/bxy09/bxy09.github.io.git
+group: stable
+dist: trusty
+os: linux
+install:
+- npm install
+before_script: npm install hexo-cli -g
+script:
+- mkdir themes && git clone https://github.com/bxy09/hexo-theme-apollo.git themes/apollo
+- cd themes && git checkout bxy.config
+- cd - && hexo generate
+after_script:
+- cd ./public
+- git init
+- git config user.name "bxy"
+- git config user.email "binbinbin915@live.cn"
+- git add .
+- git commit -m "Update docs"
+- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+
