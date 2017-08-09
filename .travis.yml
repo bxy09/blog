@@ -10,7 +10,7 @@ install:
 before_script: npm install hexo-cli -g
 script:
 - mkdir themes && git clone https://github.com/bxy09/hexo-theme-apollo.git themes/apollo
-- cd themes && git checkout bxy.config
+- cd themes/apollo && git checkout bxy.config
 - cd - && hexo generate
 after_script:
 - cd ./public
